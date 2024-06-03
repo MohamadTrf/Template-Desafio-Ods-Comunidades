@@ -1,0 +1,6 @@
+@Template_Desafio_Ods_Comunidades_HostAddress = http://localhost:5157
+
+GET {{Template_Desafio_Ods_Comunidades_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

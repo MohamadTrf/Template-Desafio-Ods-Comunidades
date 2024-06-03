@@ -1,0 +1,10 @@
+services:
+  postgres:
+    image: postgres
+    volumes:
+      - /var/lib/docker/volumes/1a3f7a660f19e61680ca8420115ddb1daf6f4268fea7a66c1a885595bcf03719/_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+    ports:
+      - "5432:5432"

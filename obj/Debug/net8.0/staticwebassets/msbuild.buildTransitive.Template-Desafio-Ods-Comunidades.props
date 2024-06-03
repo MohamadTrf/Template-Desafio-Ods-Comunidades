@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\Template-Desafio-Ods-Comunidades.props" />
+</Project>
