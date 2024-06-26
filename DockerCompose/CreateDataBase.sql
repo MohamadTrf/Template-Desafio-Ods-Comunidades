@@ -4,7 +4,7 @@ create database Desafio_Ods_Comunidades
 CREATE TABLE "Fonte" (
 	"SiglaFonte" VARCHAR(20) PRIMARY KEY,
 	"NomeFonte" VARCHAR (45) UNIQUE NOT NULL
-)
+);
 
 CREATE TABLE "Contato_Fonte" (
 	"EmailContato" VARCHAR(50) PRIMARY KEY,
@@ -17,7 +17,7 @@ CREATE TABLE "Contato_Fonte" (
 CREATE TABLE "Ods" (
 	"IdOds" SERIAL PRIMARY KEY,
 	"DescricaoOds" VARCHAR(45) 
-)
+);
 
 
 CREATE TABLE "Outlier" (
@@ -26,4 +26,4 @@ CREATE TABLE "Outlier" (
 	"ValorDadoDigitado" INT,
 	"UrlColetaValor" VARCHAR(45),
 	"SiglaFonte" VARCHAR(20) NOT NULL REFERENCES "Fonte"("SiglaFonte") ON DELETE CASCADE
-)
+);
