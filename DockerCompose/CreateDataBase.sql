@@ -26,4 +26,5 @@ CREATE TABLE "Outlier" (
 	"ValorDadoDigitado" INT,
 	"UrlColetaValor" VARCHAR(45),
 	"SiglaFonte" VARCHAR(20) NOT NULL REFERENCES "Fonte"("SiglaFonte") ON DELETE CASCADE
+	"IdOds" INT NOT NULL REFERENCES "Ods"("IdOds") ON DELETE CASCADE
 );
