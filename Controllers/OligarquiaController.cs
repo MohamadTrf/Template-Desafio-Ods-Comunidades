@@ -21,5 +21,12 @@ namespace Template_Desafio_Ods_Comunidades.Controllers
             return await _oligarquiaService.ServiceTesteOligarquia();
         }
 
+
+        [HttpGet("DockerTesting")]
+        public async Task<ActionResult> DockerTesting()
+        {
+            return Ok();
+        }
+
     }
 }
