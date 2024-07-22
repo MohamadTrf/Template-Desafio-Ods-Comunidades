@@ -1,4 +1,4 @@
-create database Desafio_Ods_Comunidades
+ -- create database Desafio_Ods_Comunidades
 
 
 CREATE TABLE "Secretaria" (
