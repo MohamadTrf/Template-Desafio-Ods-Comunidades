@@ -20,16 +20,16 @@ namespace Template_Desafio_Ods_Comunidades
         public void ConfigureServices(IServiceCollection services)
         {
             // Obter as variáveis de ambiente
-            string dbHost = Environment.GetEnvironmentVariable("DB_HOST");
-            string dbPort = Environment.GetEnvironmentVariable("DB_PORT");
-            string dbName = Environment.GetEnvironmentVariable("DB_NAME");
-            string dbUser = Environment.GetEnvironmentVariable("DB_USER");
-            string dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD");
+            //  string dbHost = Environment.GetEnvironmentVariable("DB_HOST");
+            // string dbPort = Environment.GetEnvironmentVariable("DB_PORT");
+            //string dbName = Environment.GetEnvironmentVariable("DB_NAME");
+            //string dbUser = Environment.GetEnvironmentVariable("DB_USER");
+            //string dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD");
 
             // Montar a string de conexão
-            string connectionString = $"Host={dbHost};Port={dbPort};Database={dbName};Username={dbUser};Password={dbPassword}";
+            string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
-            // Configurar DbContext
+      
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(connectionString,
                 b => b.MigrationsAssembly(typeof(Startup).Assembly.FullName)));
