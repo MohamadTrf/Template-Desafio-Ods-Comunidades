@@ -28,7 +28,7 @@ namespace Template_Desafio_Ods_Comunidades
 
             // Montar a string de conexão
             string connectionString = Configuration.GetConnectionString("DefaultConnection");
-
+            // conexão via .env string connectionString = $"Host={dbHost};Port={dbPort};Database={dbName};Username={dbUser};Password={dbPassword}";
       
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(connectionString,
