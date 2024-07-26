@@ -23,7 +23,6 @@ namespace Template_Desafio_Ods_Comunidades.Models
         public string SiglaSecretaria { get; set; }
 
 
-        public virtual Responsavel Responsavel { get; set; }
-        public virtual Secretaria Secretaria { get; set; }
+
     }
 }
