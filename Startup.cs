@@ -38,6 +38,7 @@ namespace Template_Desafio_Ods_Comunidades
             services.AddScoped<OligarquiaService>();
             services.AddScoped<IndicadorService>();
             services.AddScoped<ResponsavelService>();
+            services.AddScoped<SecretariaService>();
 
             services.AddControllers();
 
