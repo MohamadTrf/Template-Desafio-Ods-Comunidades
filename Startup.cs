@@ -67,7 +67,7 @@ namespace Template_Desafio_Ods_Comunidades
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API Template Desafio ODS Comunidades v1"));
             }
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
 
             app.UseRouting();
             app.UseCors("AllowOrigin");
