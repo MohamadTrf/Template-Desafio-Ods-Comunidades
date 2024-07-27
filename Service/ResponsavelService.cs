@@ -23,13 +23,13 @@ namespace Template_Desafio_Ods_Comunidades.Service
 
         public async Task<Responsavel> CadastrarResponsavel(Responsavel responsavel)
         {
-            // Verifica√ß√£o de duplicidade por celular ou email
+            // VerificaÁ„o de duplicidade por celular ou email
             var existingResponsavel = await _context.Responsavel
                 .FirstOrDefaultAsync(r => r.Celular == responsavel.Celular || r.Email == responsavel.Email);
 
             if (existingResponsavel != null)
             {
-                throw new ArgumentException("J√° existe um respons√°vel com este celular ou email.");
+                throw new ArgumentException("J· existe um respons·vel com este celular ou email.");
             }
 
             await _context.Responsavel.AddAsync(responsavel);
@@ -38,43 +38,42 @@ namespace Template_Desafio_Ods_Comunidades.Service
             return responsavel;
         }
 
-<<<<<<< HEAD
-        public async Task<Responsavel> DesativarResponsavel(string email, Boolean Ativo)
+        public async Task<Responsavel> DesativarResponsavel(string email, bool ativo)
         {
             var responsavelExistente = await _context.Responsavel
                 .FirstOrDefaultAsync(r => r.Email == email);
 
             if (responsavelExistente == null)
             {
-                throw new ArgumentException("Respons√°vel n√£o encontrado.");
+                throw new ArgumentException("Respons·vel n„o encontrado.");
             }
 
-            responsavelExistente.Ativo = Ativo; // Invers√£o do status Ativo
-=======
-        public async Task<Responsavel> AtualizarResponsavel (Responsavel responsavelAtualizado,String email)
-        {
-            var responsavelExistente = await _context.Responsavel.FirstOrDefaultAsync(r => r.Email == email);
-            if (responsavelExistente == null)
-            {
-                return null; // Ou lanÁar uma exceÁ„o apropriada
-            }
-
-            // Atualize os campos do respons·vel existente com os valores do respons·vel atualizado
-            responsavelExistente.Nome = responsavelAtualizado.Nome;
-            //responsavelExistente.Email = responsavelAtualizado.Email;
-            responsavelExistente.Celular = responsavelAtualizado.Celular;
-           responsavelExistente.SiglaSecretaria = responsavelAtualizado.SiglaSecretaria;
-            // Atualize outros campos conforme necess·rio
->>>>>>> 0dc8ffcbb4653e197c1b30c1bab549d17695c087
+            responsavelExistente.Ativo = ativo; // Atualiza o status Ativo
 
             _context.Responsavel.Update(responsavelExistente);
             await _context.SaveChangesAsync();
 
             return responsavelExistente;
         }
-<<<<<<< HEAD
-=======
 
->>>>>>> 0dc8ffcbb4653e197c1b30c1bab549d17695c087
+        public async Task<Responsavel> AtualizarResponsavel(Responsavel responsavelAtualizado, string email)
+        {
+            var responsavelExistente = await _context.Responsavel.FirstOrDefaultAsync(r => r.Email == email);
+            if (responsavelExistente == null)
+            {
+                throw new ArgumentException("Respons·vel n„o encontrado.");
+            }
+
+            // Atualize os campos do respons·vel existente com os valores do respons·vel atualizado
+            responsavelExistente.Nome = responsavelAtualizado.Nome;
+            responsavelExistente.Celular = responsavelAtualizado.Celular;
+            responsavelExistente.SiglaSecretaria = responsavelAtualizado.SiglaSecretaria;
+            // Atualize outros campos conforme necess·rio
+
+            _context.Responsavel.Update(responsavelExistente);
+            await _context.SaveChangesAsync();
+
+            return responsavelExistente;
+        }
     }
 }

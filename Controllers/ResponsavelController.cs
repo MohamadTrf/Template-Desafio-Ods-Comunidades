@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Template_Desafio_Ods_Comunidades.Models;
 using Template_Desafio_Ods_Comunidades.Service;
+using System;
+using System.Threading.Tasks;
 
 namespace Template_Desafio_Ods_Comunidades.Controllers
 {
@@ -16,27 +18,59 @@ namespace Template_Desafio_Ods_Comunidades.Controllers
         }
 
         [HttpPost("CadastrarResponsavel")]
-        public async Task<ActionResult<Indicador>> CadastrarResponsavel(Responsavel responsavel)
+        public async Task<ActionResult> CadastrarResponsavel(Responsavel responsavel)
         {
-            await _responsavelService.CadastrarResponsavel(responsavel);
-            return StatusCode(201);
+            try
+            {
+                var result = await _responsavelService.CadastrarResponsavel(responsavel);
+                return StatusCode(201, result);
+            }
+            catch (ArgumentException ex)
+            {
+                return Conflict(new { message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Erro ao salvar as mudanças. Tente novamente mais tarde.", details = ex.Message });
+            }
         }
-<<<<<<< HEAD
 
         [HttpPut("Desativar/{email}")]
-        public async Task<IActionResult> DesativarResponsavel(String email, Boolean Ativo)
+        public async Task<IActionResult> DesativarResponsavel(string email, bool ativo)
         {
-            var result = await _responsavelService.DesativarResponsavel(email, Ativo);
+            try
+            {
+                var result = await _responsavelService.DesativarResponsavel(email, ativo);
+                return Ok(new { message = "Status do responsável atualizado com sucesso.", result });
+            }
+            catch (ArgumentException ex)
+            {
+                return NotFound(new { message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
+        }
 
-=======
-        
         [HttpPut("AtualizarResponsavel/{email}")]
-        public async Task<IActionResult> AtualizarResponsavel(Responsavel responsavelAtualizado,String email)
+        public async Task<IActionResult> AtualizarResponsavel(Responsavel responsavelAtualizado, string email)
         {
-            var atualizado = await _responsavelService.AtualizarResponsavel(responsavelAtualizado,email);
-      
->>>>>>> 0dc8ffcbb4653e197c1b30c1bab549d17695c087
-            return Ok();
+            try
+            {
+                var atualizado = await _responsavelService.AtualizarResponsavel(responsavelAtualizado, email);
+
+                if (atualizado == null)
+                {
+                    return NotFound(new { message = "Responsável não encontrado." });
+                }
+
+                return Ok(new { message = "Responsável atualizado com sucesso.", atualizado });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
         }
     }
 }
