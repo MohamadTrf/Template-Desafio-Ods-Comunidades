@@ -56,6 +56,26 @@ namespace Template_Desafio_Ods_Comunidades.Service
             return responsavelExistente;
         }
 
+        public async Task<List<Responsavel>> GetResponsavelBySecretaria(string siglaSecretaria)
+        {
+            if (string.IsNullOrWhiteSpace(siglaSecretaria))
+            {
+                throw new ArgumentException("Sigla da secretaria não pode ser nula ou vazia", nameof(siglaSecretaria));
+            }
+
+            var responsaveis = await _context.Responsavel
+                .Where(r => r.SiglaSecretaria == siglaSecretaria)
+                .ToListAsync();
+
+            if (responsaveis == null || responsaveis.Count == 0)
+            {
+                // Handle the case when no responsaveis are found
+                throw new KeyNotFoundException($"Nenhum responsável encontrado para a secretaria: {siglaSecretaria}");
+            }
+
+            return responsaveis;
+        }
+
         public async Task<Responsavel> AtualizarResponsavel(Responsavel responsavelAtualizado, string email)
         {
             var responsavelExistente = await _context.Responsavel.FirstOrDefaultAsync(r => r.Email == email);
