@@ -16,7 +16,13 @@ namespace Template_Desafio_Ods_Comunidades.Controllers
         {
             _responsavelService = responsavelService;
         }
-
+        //Lista Todas as Secretarias.
+        [HttpGet("GetAll")]
+        public async Task<ActionResult> GetAll()
+        {
+            var Responsavel = await _responsavelService.GetAll();
+            return Ok(Responsavel);
+        }
         [HttpPost("CadastrarResponsavel")]
         public async Task<ActionResult> CadastrarResponsavel(Responsavel responsavel)
         {

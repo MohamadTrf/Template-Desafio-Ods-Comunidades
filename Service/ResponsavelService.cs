@@ -16,7 +16,7 @@ namespace Template_Desafio_Ods_Comunidades.Service
             _context = context;
         }
 
-        public async Task<IEnumerable<Responsavel>> GetAllResponsaveis()
+        public async Task<IEnumerable<Responsavel>> GetAll()
         {
             return await _context.Responsavel.ToListAsync();
         }
@@ -38,7 +38,7 @@ namespace Template_Desafio_Ods_Comunidades.Service
             return responsavel;
         }
 
-        public async Task<Responsavel> DesativarResponsavel(string email, bool ativo)
+        public async Task<Responsavel> DesativarResponsavel(string email, bool Active)
         {
             var responsavelExistente = await _context.Responsavel
                 .FirstOrDefaultAsync(r => r.Email == email);
@@ -48,7 +48,7 @@ namespace Template_Desafio_Ods_Comunidades.Service
                 throw new ArgumentException("Responsável não encontrado.");
             }
 
-            responsavelExistente.Ativo = ativo; // Atualiza o status Ativo
+            responsavelExistente.Active = Active; // Atualiza o status Ativo
 
             _context.Responsavel.Update(responsavelExistente);
             await _context.SaveChangesAsync();

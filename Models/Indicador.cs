@@ -16,7 +16,5 @@ namespace Template_Desafio_Ods_Comunidades.Models
         [ForeignKey("Secretaria")]
         public string SiglaSecretaria { get; set; }
 
-
-
     }
 }
