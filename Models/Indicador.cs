@@ -7,7 +7,7 @@ namespace Template_Desafio_Ods_Comunidades.Models
     {
         public int IdCodigoArquivo { get; set; }
         public int IdCodigoValor { get; set; }
-    
+
         public double ValorIndicador { get; set; }
         public double Mediana { get; set; }
         public double DesvioPadrao { get; set; }
@@ -15,6 +15,8 @@ namespace Template_Desafio_Ods_Comunidades.Models
         public double LimiteInferior { get; set; }
         [ForeignKey("Secretaria")]
         public string SiglaSecretaria { get; set; }
-
+        public string NomeIndicador { get; set; }
+        public string IdIndicador { get; set;}
     }
 }
+

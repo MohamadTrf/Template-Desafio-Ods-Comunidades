@@ -19,7 +19,7 @@ namespace Template_Desafio_Ods_Comunidades.Data
             modelBuilder.Entity<Indicador>(entity =>
             {
                 // Definir chave primária composta
-                entity.HasKey(e => new { e.IdCodigoArquivo, e.IdCodigoValor });
+                entity.HasKey(e => new { e.IdCodigoArquivo, e.IdCodigoValor, e.IdIndicador });
 
                
                 // Definir chave estrangeira para SiglaSecretaria (Secretaria)
