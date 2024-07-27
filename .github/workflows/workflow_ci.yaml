@@ -1,5 +1,5 @@
 name: Docker Image CI
-run-name: Build image version ${{ inputs.image_version }} from master
+run-name: Build image version ${{ inputs.image_version }}
 
 on:
   workflow_dispatch:
@@ -13,6 +13,21 @@ jobs:
     name: Docker build and push
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '8.0'
+
+      #- name: Restore dependencies
+      #  run: dotnet restore
+      #- name: Build
+      #  run: dotnet build --configuration Release --no-restore
+      #- name: Publish
+      #  run: dotnet publish --configuration Release --no-build --output out         
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
 
@@ -26,8 +41,10 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and push
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v6
         with:
-          platforms: linux/amd64,linux/arm64
+          context: .
+          file: ./Dockerfile
+          platforms: linux/amd64 #,linux/arm64
           push: true
           tags: robertsilvatech/etis-backend:${{ inputs.image_version }}
