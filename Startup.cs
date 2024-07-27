@@ -37,6 +37,7 @@ namespace Template_Desafio_Ods_Comunidades
             // Registrar OligarquiaService
             services.AddScoped<OligarquiaService>();
             services.AddScoped<IndicadorService>();
+            services.AddScoped<ResponsavelService>();
             services.AddScoped<SecretariaService>();
             services.AddControllers();
 
@@ -59,12 +60,13 @@ namespace Template_Desafio_Ods_Comunidades
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API Template Desafio ODS Comunidades v1"));
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
 
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API Template Desafio ODS Comunidades v1"));
             }
 
             app.UseHttpsRedirection();
