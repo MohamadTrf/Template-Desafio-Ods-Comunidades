@@ -49,10 +49,10 @@ namespace Template_Desafio_Ods_Comunidades.Controllers
         }
         //Atualizar uma Secretaria já Existente.
         [HttpPut("Update")]
-        public  async Task<IActionResult> Update(string SiglaSecretaria, Secretaria secretariaAtualizada)
+        public  async Task<IActionResult> Update(string SiglaSecretaria, bool Active)
         {
 
-            var sucesso = await _service.Update(SiglaSecretaria, secretariaAtualizada);
+            var sucesso = await _service.Update(SiglaSecretaria, Active);
 
             if (sucesso)
             {
