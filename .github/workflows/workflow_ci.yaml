@@ -1,5 +1,5 @@
 name: Docker Image CI
-run-name: Build image version ${{ inputs.image_version }} from master
+run-name: Build image version ${{ inputs.image_version }}
 
 on:
   workflow_dispatch:
