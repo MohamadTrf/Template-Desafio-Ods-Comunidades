@@ -17,11 +17,11 @@ namespace Template_Desafio_Ods_Comunidades.Service
         {
             return await _context.Indicador.ToListAsync();
         }
-        public Indicador GetBySiglaSecretaria(string sigla)
+        public List<Indicador> GetBySiglaSecretaria(string sigla)
         {
             string input = sigla;
             string result = input.Replace(@"\", "").Replace("(", "");
-            return _context.Indicador.FirstOrDefault(s => s.SiglaSecretaria == result.Trim());
+            return _context.Indicador.Where(s => s.SiglaSecretaria == result.Trim()).ToList();
         }
         public void Add(Indicador indicador)
         {
