@@ -63,19 +63,7 @@ namespace Template_Desafio_Ods_Comunidades.Controllers
                 return NotFound("Secretaria não encontrada ou erro na atualização.");
             }
         }
-        //Desativar uma Secretária.
-        [HttpDelete("Desativar")]
-        public ActionResult Deactivate(string SiglaSecretaria)
-        {
-            var existing = _service.GetBySiglaSecretaria(SiglaSecretaria);
-            if (existing == null)
-            {
-                return NotFound();
-            }
-
-            _service.Deactivate(SiglaSecretaria);
-            return Ok();
-        }
+      
     }
 
 }

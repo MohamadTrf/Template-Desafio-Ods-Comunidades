@@ -44,9 +44,8 @@ namespace Template_Desafio_Ods_Comunidades.Service
                     return false;
                 }
 
-                // Atualize os campos relevantes da secretaria existente
-                secretariaExistente.NomeSecretaria = secretariaAtualizada.NomeSecretaria;
-                secretariaExistente.Active = secretariaAtualizada.Active;
+                // Atualize os campos relevantes da secretaria existent
+                secretariaExistente.Active = !secretariaExistente.Active;
 
                 try
                 {
@@ -61,15 +60,7 @@ namespace Template_Desafio_Ods_Comunidades.Service
             }
         
 
-        public void Deactivate(string SiglaSecretaria)
-        {
-            var secretaria = _context.Secretaria.FirstOrDefault(s => s.SiglaSecretaria == SiglaSecretaria);
-            if (secretaria != null)
-            {
-                secretaria.Active = false;
-            }
-            _context.SaveChanges();
-        }
+       
     }
 
 }
