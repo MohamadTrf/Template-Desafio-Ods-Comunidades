@@ -89,6 +89,12 @@ namespace Template_Desafio_Ods_Comunidades
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                });
+                    webBuilder.UseKestrel(options =>
+                    {
+                        // Configura Kestrel para escutar somente no endereço IPv4 especificado
+                        options.Listen(System.Net.IPAddress.Parse("0.0.0.0"), 8080); // Substitua 8080 pela porta desejada
+                    });
+                });                    
+                // });
     }
 }
