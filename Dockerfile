@@ -13,4 +13,4 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0
 RUN apt-get update && apt-get install -y wget
 WORKDIR /App
 COPY --from=build-env /App/out .
-ENTRYPOINT ["dotnet", "WeatherForecastApi.dll"]
+ENTRYPOINT ["dotnet", "Template-Desafio-Ods-Comunidades.csproj"]
