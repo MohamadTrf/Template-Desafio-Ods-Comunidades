@@ -42,11 +42,11 @@ namespace Template_Desafio_Ods_Comunidades.Controllers
         }
 
         [HttpPut("Desativar/{email}")]
-        public async Task<IActionResult> DesativarResponsavel(string email, bool ativo)
+        public async Task<IActionResult> DesativarResponsavel(string email, bool Active)
         {
             try
             {
-                var result = await _responsavelService.DesativarResponsavel(email, ativo);
+                var result = await _responsavelService.DesativarResponsavel(email, Active);
                 return Ok(new { message = "Status do responsável atualizado com sucesso.", result });
             }
             catch (ArgumentException ex)
