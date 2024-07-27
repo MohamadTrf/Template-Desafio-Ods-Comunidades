@@ -18,8 +18,16 @@ namespace Template_Desafio_Ods_Comunidades.Controllers
         [HttpPost("CadastrarResponsavel")]
         public async Task<ActionResult<Indicador>> CadastrarResponsavel(Responsavel responsavel)
         {
-             await _responsavelService.CadastrarResponsavel(responsavel);
+            await _responsavelService.CadastrarResponsavel(responsavel);
             return StatusCode(201);
+        }
+
+        [HttpPut("Desativar/{email}")]
+        public async Task<IActionResult> DesativarResponsavel(String email, Boolean Ativo)
+        {
+            var result = await _responsavelService.DesativarResponsavel(email, Ativo);
+
+            return Ok();
         }
     }
 }
