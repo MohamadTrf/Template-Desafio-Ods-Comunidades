@@ -30,4 +30,4 @@ jobs:
         with:
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: robertsilvatech/${{ github.event.repository.name }}:${{ inputs.image_version }}
+          tags: robertsilvatech/etis-backend:${{ inputs.image_version }}
