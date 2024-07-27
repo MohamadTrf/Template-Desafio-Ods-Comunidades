@@ -21,14 +21,12 @@ jobs:
         with:
           dotnet-version: '8.0'
 
-      - name: Restore dependencies
-        run: dotnet restore
-
-      - name: Build
-        run: dotnet build --configuration Release --no-restore
-
-      - name: Publish
-        run: dotnet publish --configuration Release --no-build --output out         
+      #- name: Restore dependencies
+      #  run: dotnet restore
+      #- name: Build
+      #  run: dotnet build --configuration Release --no-restore
+      #- name: Publish
+      #  run: dotnet publish --configuration Release --no-build --output out         
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -47,6 +45,6 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64 #,linux/arm64
           push: true
           tags: robertsilvatech/etis-backend:${{ inputs.image_version }}
