@@ -15,7 +15,7 @@ namespace Template_Desafio_Ods_Comunidades.Controllers
             _indicadorService = indicadorService;
         }
 
-        [HttpPost("GetAllIndicadores")]
+        [HttpGet("GetAllIndicadores")]
         public async Task<ActionResult<Indicador>> GetAllIndicadores()
         {
             var indicadores = await _indicadorService.GetAllIndicadores();
