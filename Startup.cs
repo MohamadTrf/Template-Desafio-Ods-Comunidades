@@ -69,7 +69,7 @@ namespace Template_Desafio_Ods_Comunidades
 
             }
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
 
             app.UseRouting();
             app.UseCors("AllowOrigin");
