@@ -1,6 +1,7 @@
 
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Template_Desafio_Ods_Comunidades.Models
 {
@@ -18,5 +19,8 @@ namespace Template_Desafio_Ods_Comunidades.Models
 
        [ForeignKey("Secretaria")]
         public string SiglaSecretaria { get; set; }
+
+        public Boolean Ativo { get; set; }
     }
+        
 }

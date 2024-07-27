@@ -11,6 +11,7 @@ CREATE TABLE "Responsavel" (
     "Email" VARCHAR(50) PRIMARY KEY,
     "Nome" VARCHAR(45) NOT NULL,
     "Celular" VARCHAR(45) UNIQUE NOT NULL,
+    "Ativo" Boolean,    
     "SiglaSecretaria" VARCHAR(20) NOT NULL REFERENCES "Secretaria"("SiglaSecretaria") ON DELETE CASCADE
 );
 
