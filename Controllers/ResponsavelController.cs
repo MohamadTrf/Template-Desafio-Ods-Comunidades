@@ -60,13 +60,7 @@ namespace Template_Desafio_Ods_Comunidades.Controllers
         }
 
 
-        [HttpGet("GetResponsavelBySecretaria{siglaSecretaria")]
-
-        public async Task<ActionResult> GetResponsavelBySecretaria(string siglaSecretaria)
-        {
-            var responsaveis = await _responsavelService.GetResponsavelBySecretaria(siglaSecretaria);
-        }
-
+    
         [HttpPut("AtualizarResponsavel/{email}")]
         public async Task<IActionResult> AtualizarResponsavel(Responsavel responsavelAtualizado, string email)
         {
