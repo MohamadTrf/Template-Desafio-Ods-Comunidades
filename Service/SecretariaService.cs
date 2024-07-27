@@ -45,6 +45,7 @@ namespace Template_Desafio_Ods_Comunidades.Service
                 }
 
                 // Atualize os campos relevantes da secretaria existente
+                secretariaExistente.NomeSecretaria = secretariaAtualizada.NomeSecretaria;
                 secretariaExistente.Active = secretariaAtualizada.Active;
 
                 try
