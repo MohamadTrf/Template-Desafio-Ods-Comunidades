@@ -3,7 +3,8 @@
 
 CREATE TABLE "Secretaria" (
     "SiglaSecretaria" VARCHAR(20) PRIMARY KEY,
-    "NomeSecretaria" VARCHAR(45) UNIQUE NOT NULL
+    "NomeSecretaria" VARCHAR(45) UNIQUE NOT NULL,
+    "Active" Boolean 
 );
 
 CREATE TABLE "Responsavel" (

@@ -15,7 +15,7 @@ namespace Template_Desafio_Ods_Comunidades.Service
 
         public async Task<IEnumerable<Indicador>> GetAllIndicadores()
         {
-            return await _context.Indicadores.ToListAsync();
+            return await _context.Indicador.ToListAsync();
         }
     }
 }
