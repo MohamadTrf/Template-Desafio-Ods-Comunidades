@@ -7,3 +7,5 @@ out/
 *.pdb
 .build
 .publish
+.secrets
+
