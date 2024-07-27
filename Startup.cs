@@ -20,15 +20,15 @@ namespace Template_Desafio_Ods_Comunidades
         public void ConfigureServices(IServiceCollection services)
         {
             // Obter as variáveis de ambiente
-            //  string dbHost = Environment.GetEnvironmentVariable("DB_HOST");
-            // string dbPort = Environment.GetEnvironmentVariable("DB_PORT");
-            //string dbName = Environment.GetEnvironmentVariable("DB_NAME");
-            //string dbUser = Environment.GetEnvironmentVariable("DB_USER");
-            //string dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD");
+              string dbHost = Environment.GetEnvironmentVariable("DB_HOST");
+             string dbPort = Environment.GetEnvironmentVariable("DB_PORT");
+            string dbName = Environment.GetEnvironmentVariable("DB_NAME");
+            string dbUser = Environment.GetEnvironmentVariable("DB_USER");
+            string dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD");
 
             // Montar a string de conexão
-            string connectionString = Configuration.GetConnectionString("DefaultConnection");
-            // conexão via .env string connectionString = $"Host={dbHost};Port={dbPort};Database={dbName};Username={dbUser};Password={dbPassword}";
+            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            string connectionString = $"Host={dbHost};Port={dbPort};Database={dbName};Username={dbUser};Password={dbPassword}";
       
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(connectionString,
@@ -39,7 +39,6 @@ namespace Template_Desafio_Ods_Comunidades
             services.AddScoped<IndicadorService>();
             services.AddScoped<ResponsavelService>();
             services.AddScoped<SecretariaService>();
-
             services.AddControllers();
 
             services.AddCors(options =>
@@ -61,15 +60,16 @@ namespace Template_Desafio_Ods_Comunidades
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API Template Desafio ODS Comunidades v1"));
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
 
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API Template Desafio ODS Comunidades v1"));
             }
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
 
             app.UseRouting();
             app.UseCors("AllowOrigin");
