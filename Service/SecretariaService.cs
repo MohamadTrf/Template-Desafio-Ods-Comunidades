@@ -33,7 +33,7 @@ namespace Template_Desafio_Ods_Comunidades.Service
 
         }
 
-        public async Task<bool> Update(string sigla, Secretaria secretariaAtualizada)
+        public async Task<bool> Update(string sigla, bool Active)
         {
                 
             var secretariaExistente = await _context.Secretaria.FirstOrDefaultAsync(s => s.SiglaSecretaria == sigla);
@@ -45,7 +45,7 @@ namespace Template_Desafio_Ods_Comunidades.Service
                 }
 
                 // Atualize os campos relevantes da secretaria existent
-                secretariaExistente.Active = !secretariaExistente.Active;
+                secretariaExistente.Active = Active;
 
                 try
                 {
