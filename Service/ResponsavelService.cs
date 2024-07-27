@@ -4,6 +4,7 @@ using Template_Desafio_Ods_Comunidades.Models;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Template_Desafio_Ods_Comunidades.Service
 {
@@ -88,12 +89,11 @@ namespace Template_Desafio_Ods_Comunidades.Service
             responsavelExistente.Nome = responsavelAtualizado.Nome;
             responsavelExistente.Celular = responsavelAtualizado.Celular;
             responsavelExistente.SiglaSecretaria = responsavelAtualizado.SiglaSecretaria;
+            responsavelExistente.Active = responsavelAtualizado.Active;
             // Atualize outros campos conforme necessário
 
             _context.Responsavel.Update(responsavelExistente);
             await _context.SaveChangesAsync();
-
-            return responsavelExistente;
         }
     }
 }
