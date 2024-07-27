@@ -38,6 +38,7 @@ namespace Template_Desafio_Ods_Comunidades.Service
             return responsavel;
         }
 
+<<<<<<< HEAD
         public async Task<Responsavel> DesativarResponsavel(string email, Boolean Ativo)
         {
             var responsavelExistente = await _context.Responsavel
@@ -49,11 +50,31 @@ namespace Template_Desafio_Ods_Comunidades.Service
             }
 
             responsavelExistente.Ativo = Ativo; // Invers√£o do status Ativo
+=======
+        public async Task<Responsavel> AtualizarResponsavel (Responsavel responsavelAtualizado,String email)
+        {
+            var responsavelExistente = await _context.Responsavel.FirstOrDefaultAsync(r => r.Email == email);
+            if (responsavelExistente == null)
+            {
+                return null; // Ou lanÁar uma exceÁ„o apropriada
+            }
+
+            // Atualize os campos do respons·vel existente com os valores do respons·vel atualizado
+            responsavelExistente.Nome = responsavelAtualizado.Nome;
+            //responsavelExistente.Email = responsavelAtualizado.Email;
+            responsavelExistente.Celular = responsavelAtualizado.Celular;
+           responsavelExistente.SiglaSecretaria = responsavelAtualizado.SiglaSecretaria;
+            // Atualize outros campos conforme necess·rio
+>>>>>>> 0dc8ffcbb4653e197c1b30c1bab549d17695c087
 
             _context.Responsavel.Update(responsavelExistente);
             await _context.SaveChangesAsync();
 
             return responsavelExistente;
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0dc8ffcbb4653e197c1b30c1bab549d17695c087
     }
 }
