@@ -10,11 +10,14 @@ COPY ["Template-Desafio-Ods-Comunidades.csproj", "./"]
 RUN dotnet restore "Template-Desafio-Ods-Comunidades.csproj"
 COPY . .
 
+WORKDIR /App
+
 # Copy everything
 #COPY . ./
 # Restore as distinct layers
 # RUN dotnet restore
 # Build and publish a release
+
 RUN dotnet publish -c Release -o out
 
 # Build runtime image

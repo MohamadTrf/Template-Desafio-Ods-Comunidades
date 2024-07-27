@@ -13,6 +13,14 @@ jobs:
     name: Docker build and push
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '8.0'
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
 
@@ -28,7 +36,8 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
-          # no-cache: true
+          context: .
+          file: ./Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
           tags: robertsilvatech/etis-backend:${{ inputs.image_version }}
