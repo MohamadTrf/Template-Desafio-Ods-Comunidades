@@ -21,5 +21,13 @@ namespace Template_Desafio_Ods_Comunidades.Controllers
              await _responsavelService.CadastrarResponsavel(responsavel);
             return StatusCode(201);
         }
+        
+        [HttpPut("AtualizarResponsavel/{email}")]
+        public async Task<IActionResult> AtualizarResponsavel(Responsavel responsavelAtualizado,String email)
+        {
+            var atualizado = await _responsavelService.AtualizarResponsavel(responsavelAtualizado,email);
+      
+            return Ok();
+        }
     }
 }
