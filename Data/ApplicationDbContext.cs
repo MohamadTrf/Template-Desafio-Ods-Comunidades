@@ -6,7 +6,7 @@ namespace Template_Desafio_Ods_Comunidades.Data
     public class ApplicationDbContext : DbContext
     {
         public DbSet<Indicador> Indicadores { get; set; }
-        public DbSet<Responsavel> Responsaveis { get; set; }
+        public DbSet<Responsavel> Responsavel { get; set; }
         public DbSet<Secretaria> Secretarias { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)

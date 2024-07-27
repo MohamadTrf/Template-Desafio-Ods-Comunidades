@@ -37,6 +37,7 @@ namespace Template_Desafio_Ods_Comunidades
             // Registrar OligarquiaService
             services.AddScoped<OligarquiaService>();
             services.AddScoped<IndicadorService>();
+            services.AddScoped<ResponsavelService>();
 
             services.AddControllers();
 
