@@ -16,6 +16,7 @@ namespace Template_Desafio_Ods_Comunidades.Controllers
         {
             _responsavelService = responsavelService;
         }
+
         //Lista Todas as Secretarias.
         [HttpGet("GetAll")]
         public async Task<ActionResult> GetAll()
@@ -23,6 +24,19 @@ namespace Template_Desafio_Ods_Comunidades.Controllers
             var Responsavel = await _responsavelService.GetAll();
             return Ok(Responsavel);
         }
+        
+        //Lista todos os Responsáveis da sigla digitada.
+        [HttpGet("GetBySigla")]
+        public ActionResult<Responsavel> GetById(string SiglaSecretaria)
+        {
+            var Responsavel = _responsavelService.GetBySigla(SiglaSecretaria);
+            if (Responsavel == null)
+            {
+                return NotFound();
+            }
+            return Ok(Responsavel);
+        }
+
         [HttpPost("CadastrarResponsavel")]
         public async Task<ActionResult> CadastrarResponsavel(Responsavel responsavel)
         {
@@ -60,25 +74,12 @@ namespace Template_Desafio_Ods_Comunidades.Controllers
         }
 
 
-    
-        [HttpPut("AtualizarResponsavel/{email}")]
-        public async Task<IActionResult> AtualizarResponsavel(Responsavel responsavelAtualizado, string email)
+
+        [HttpPut("AtualizarResponsavel")]
+        public async Task<IActionResult> AtualizarResponsavel(string SiglaSecretaria,string email, Responsavel responsavel)
         {
-            try
-            {
-                var atualizado = await _responsavelService.AtualizarResponsavel(responsavelAtualizado, email);
-
-                if (atualizado == null)
-                {
-                    return NotFound(new { message = "Responsável não encontrado." });
-                }
-
-                return Ok(new { message = "Responsável atualizado com sucesso.", atualizado });
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new { message = ex.Message });
-            }
+            await _responsavelService.AtualizarResponsavel(SiglaSecretaria, email, responsavel);
+            return StatusCode(200);
         }
     }
 }
