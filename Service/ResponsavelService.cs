@@ -57,43 +57,38 @@ namespace Template_Desafio_Ods_Comunidades.Service
             return responsavelExistente;
         }
 
-        public async Task<List<Responsavel>> GetResponsavelBySecretaria(string siglaSecretaria)
+        public async Task<List<Responsavel>> GetBySigla(string SiglaSecretaria)
         {
-            if (string.IsNullOrWhiteSpace(siglaSecretaria))
-            {
-                throw new ArgumentException("Sigla da secretaria não pode ser nula ou vazia", nameof(siglaSecretaria));
-            }
-
-            var responsaveis = await _context.Responsavel
-                .Where(r => r.SiglaSecretaria == siglaSecretaria)
-                .ToListAsync();
-
-            if (responsaveis == null || responsaveis.Count == 0)
-            {
-                // Handle the case when no responsaveis are found
-                throw new KeyNotFoundException($"Nenhum responsável encontrado para a secretaria: {siglaSecretaria}");
-            }
-
-            return responsaveis;
+            string input = SiglaSecretaria;
+            string result = input.Replace(@"\", "").Replace("(", "");
+            return _context.Responsavel.Where(s => s.SiglaSecretaria == result.Trim()).ToList();
         }
-
-        public async Task<Responsavel> AtualizarResponsavel(Responsavel responsavelAtualizado, string email)
+        public  async Task<Responsavel> AtualizarResponsavel(string SiglaSecretaria, string email, Responsavel responsavel)
         {
-            var responsavelExistente = await _context.Responsavel.FirstOrDefaultAsync(r => r.Email == email);
-            if (responsavelExistente == null)
+            var existeSiglaResponsavel = await _context.Responsavel.FindAsync(SiglaSecretaria);
+            var existeEmailResponsavel = await _context.Responsavel.FindAsync(email);
+
+            if (existeSiglaResponsavel == null)
             {
-                throw new ArgumentException("Responsável não encontrado.");
+                return null;
             }
+            else
+            {
+                if (existeEmailResponsavel == null)
+                {
+                    throw new ArgumentException("Responsável não encontrado.");
+                }
 
-            // Atualize os campos do responsável existente com os valores do responsável atualizado
-            responsavelExistente.Nome = responsavelAtualizado.Nome;
-            responsavelExistente.Celular = responsavelAtualizado.Celular;
-            responsavelExistente.SiglaSecretaria = responsavelAtualizado.SiglaSecretaria;
-            responsavelExistente.Active = responsavelAtualizado.Active;
-            // Atualize outros campos conforme necessário
-
-            _context.Responsavel.Update(responsavelExistente);
-            await _context.SaveChangesAsync();
+                // Atualize os campos do responsável existente com os valores do responsável atualizado
+                existeSiglaResponsavel.Nome = responsavel.Nome;
+                existeSiglaResponsavel.Celular = responsavel.Celular;
+                existeSiglaResponsavel.SiglaSecretaria = responsavel.SiglaSecretaria;
+                existeSiglaResponsavel.Active = responsavel.Active;
+                // Atualize outros campos conforme necessário
+                _context.Responsavel.Update(responsavel);
+                await _context.SaveChangesAsync();
+                return existeSiglaResponsavel;
+            }
         }
     }
 }

@@ -48,18 +48,6 @@ namespace Template_Desafio_Ods_Comunidades.Service
             await _context.SaveChangesAsync();
             return existingIndicador;
         }
-        public async Task<bool> DeleteIndicador(string SiglaSecretaria)
-        {
-            var indicador = await _context.Indicador.FindAsync(SiglaSecretaria);
-            if (indicador == null)
-            {
-                return false;
-            }
-
-            _context.Indicador.Remove(indicador);
-            await _context.SaveChangesAsync();
-            return true;
-        }
-
+      
     }
 }

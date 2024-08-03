@@ -48,15 +48,6 @@ namespace Template_Desafio_Ods_Comunidades.Controllers
             await _indicadorService.UpdateIndicador(SiglaSecretaria, indicador);
             return StatusCode(200);
         }
-        ////[HttpDelete("DeleteIndicador")]
-        //public async Task<IActionResult> DeleteIndicador(string SiglaSecretaria)
-        //{
-        //    var result = await _indicadorService.DeleteIndicador(SiglaSecretaria);
-        //    if (!result)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return Ok();
-        //}
+        
     }
 }
